@@ -1,6 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
 <h1>Places#show</h1>
 <p>Find me in app/views/places/show.html.erb</p>
 
 <div data-controller="map">
   <div data-map-target="map" id="map" style="height: 500px; width: 70rem;"></div>
+</div>
+
+
+<%= render @place %>
+
+<div>
+  <%= link_to "Edit this place", edit_place_path(@place) %> |
+  <%= link_to "Back to places", places_path %>
+
+  <%= button_to "Destroy this place", @place, method: :delete %>
 </div>
