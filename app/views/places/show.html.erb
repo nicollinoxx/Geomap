@@ -4,9 +4,11 @@
 <p>Find me in app/views/places/show.html.erb</p>
 
 <div data-controller="map">
-  <div data-map-target="map" id="map" style="height: 500px; width: 70rem;"></div>
+  <div id="map" style="height: 500px; width: 100%;"></div>
+  <div data-map-name="<%= @place.name %>"
+     data-map-latitude="<%= @place.latitude %>"
+     data-map-longitude="<%= @place.longitude %>"></div>
 </div>
-
 
 <%= render @place %>
 

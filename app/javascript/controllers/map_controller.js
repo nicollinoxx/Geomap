@@ -1,35 +1,40 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["map"];
-
-  addMarker(lng, lat, cityName) {
-    new maplibregl.Marker({ color: "yellow", scale: 1.5 })
+  addMarker(lng, lat, color, name) {
+    new maplibregl.Marker({ color: color, scale: 1.5 })
       .setLngLat([lng, lat])
-      .setPopup(
-        new maplibregl.Popup()
-          .setHTML('<h3>Place name</h3>')
-      )
+      .setPopup(new maplibregl.Popup().setHTML(`<h2>${name}</h2>`))
       .addTo(this.map);
   }
 
-  connect() {
-    this.map = new maplibregl.Map({
-      container: this.mapTarget,
-      style: "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL",
-      center: [-46.6333, -23.5505],
-      zoom: 14,
-    });
-
+  mapControllers() {
     this.map.addControl(new maplibregl.NavigationControl());
     this.map.addControl(new maplibregl.FullscreenControl());
     this.map.addControl(new maplibregl.ScaleControl());
+  }
+
+  connect() {
+    const dataElement = this.element.querySelector("[data-map-name]");
+    const namePlace = `${dataElement.dataset.mapName}`;
+    const latitude = parseFloat(dataElement.dataset.mapLatitude);
+    const longitude = parseFloat(dataElement.dataset.mapLongitude);
+
+    this.map = new maplibregl.Map({
+      container: this.element.querySelector("#map"),
+      style: "https://api.maptiler.com/maps/streets-v2-dark/style.json?key=sGjiyFIQZQ5cx6CA6dOy",
+      center: [longitude, latitude],
+      zoom: 6,
+    });
+
+    this.mapControllers();
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.addMarker(position.coords.longitude, position.coords.latitude, "yellow", "Your location");
+    });
 
     this.map.on("load", () => {
-      this.addMarker(-46.6333, -23.5505);
-      this.addMarker(-47.9292, -15.7801);
-      this.addMarker(-43.2096, -22.9035);
-      this.addMarker(-48.0294, -16.3344);
+      this.addMarker(longitude, latitude, "blue", namePlace);
     });
   }
 }
