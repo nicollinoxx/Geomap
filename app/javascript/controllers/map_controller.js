@@ -4,7 +4,7 @@ export default class extends Controller {
   addMarker(lng, lat, color, name) {
     new maplibregl.Marker({ color: color, scale: 1.5 })
       .setLngLat([lng, lat])
-      .setPopup(new maplibregl.Popup().setHTML(`<h2>${name}</h2>`))
+      .setPopup(new maplibregl.Popup().setHTML(`<h4>${name}</h4>`))
       .addTo(this.map);
   }
 

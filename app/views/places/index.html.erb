@@ -1,16 +1,19 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Places" %>
 
-<h1>Places</h1>
+<div class="d-flex justify-content-between mb-3">
+  <h1>Places</h1>
+  <div>
+    <%= link_to "New place", new_place_path, class: 'btn btn-primary' %>
+  </div>
+</div>
 
 <div id="places">
   <% @places.each do |place| %>
-    <%= render place %>
-    <p>
-      <%= link_to "Show this place", place %>
-    </p>
+    <div class="shadow border-start border-4 rounded <%= cycle('bg-light border-primary', 'bg-primary-subtle border-dark') %> p-2 my-3">
+      <div class="d-flex justify-content-between">
+        <%= render place %>
+        <%= link_to "Show this place", place, class: 'text-top fw-bold' %>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New place", new_place_path %>
