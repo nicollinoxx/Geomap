@@ -36,5 +36,13 @@ export default class extends Controller {
     this.map.on("load", () => {
       this.addMarker(longitude, latitude, "blue", namePlace);
     });
+
+    const places = document.querySelectorAll('[data-map-name]');
+    places.forEach(place => {
+      const name = place.dataset.mapName;
+      const lat = parseFloat(place.dataset.mapLatitude);
+      const lng = parseFloat(place.dataset.mapLongitude);
+      this.addMarker(lng, lat, "green", name);
+    });
   }
 }
