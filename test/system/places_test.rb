@@ -17,10 +17,10 @@ class PlacesTest < ApplicationSystemTestCase
     fill_in "Latitude", with: @place.latitude
     fill_in "Longitude", with: @place.longitude
     fill_in "Name", with: @place.name
-    click_on "Create Place"
+    click_on "Save"
 
     assert_text "Place was successfully created"
-    click_on "Back"
+    click_on "Back to places"
   end
 
   test "should update Place" do
@@ -30,10 +30,10 @@ class PlacesTest < ApplicationSystemTestCase
     fill_in "Latitude", with: @place.latitude
     fill_in "Longitude", with: @place.longitude
     fill_in "Name", with: @place.name
-    click_on "Update Place"
+    click_on "Save"
 
     assert_text "Place was successfully updated"
-    click_on "Back"
+    click_on "Back to places"
   end
 
   test "should destroy Place" do
