@@ -17,6 +17,11 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label :thumbnail, style: "display: block", class: 'form-label' %>
+    <%= form.file_field :thumbnail, step: "0.0001", minimum: -180, maximum: 180, class: 'form-control border-primary-subtle'  %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label :latitude, style: "display: block", class: 'form-label' %>
     <%= form.number_field :latitude, step: "0.0001", minimum: -90, maximum: 90, class: 'form-control border-primary-subtle' %>
   </div>

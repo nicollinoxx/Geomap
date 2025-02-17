@@ -9,14 +9,18 @@
 
 <div id="places">
   <% @places.each do |place| %>
-    <div class="shadow border-start border-4 rounded <%= cycle('bg-light border-primary', 'bg-primary-subtle border-dark') %> p-2 my-3">
-      <div class="d-flex justify-content-between">
-        <%= render place %>
-        <%= link_to "Show this place", place, class: 'text-top' %>
+  <div class="shadow rounded <%= cycle('bg-light border-primary', 'bg-primary-subtle border-dark') %>">
+    <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex p-2">
+          <%= image_tag place.thumbnail, class: 'img-fluid rounded me-1', style: 'height: 100px; width: 100px;' if place.thumbnail.attached? %>
+          <%= render place %>
+        </div>
+        <%= link_to "Show this place", place, class: 'text-top p-2' %>
       </div>
     </div>
   <% end %>
 </div>
+
 
 <div data-controller="map">
   <div id="map" class="rounded mb-4" style="height: 400px; width: 100%;"></div>
